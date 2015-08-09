@@ -21,23 +21,23 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let tapReg = UITapGestureRecognizer(target: self, action: "tickTackViewTapped:")
-        var index: Int = 0
-        for view in ticTacViewCollection
+        for ttv in ticTacViewCollection
         {
-            view.type = TickTackType.Empty
-            view.addGestureRecognizer(tapReg)
+            ttv.type = TickTackType.Empty
+            let tapReg = UITapGestureRecognizer(target: self, action: Selector("tickTackViewTapped:"))
+            ttv.addGestureRecognizer(tapReg)
+//            println("user interaction: \(ttv.userInteractionEnabled)")
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func tickTackViewTapped(tappedObj: AnyObject)
+    func tickTackViewTapped(sender: UITapGestureRecognizer)
     {
-        let ttV = tappedObj as? TickTackView
+        if(sender.state != .Ended)
+        {
+            return
+        }
+        
+        let ttV = sender.view as? TickTackView
         if(ttV != nil && ttV!.type == TickTackType.Empty)
         {
             if(self.isCircleTurn)
@@ -53,6 +53,5 @@ class ViewController: UIViewController {
             isCircleTurn = !isCircleTurn
         }
     }
-
 }
 
