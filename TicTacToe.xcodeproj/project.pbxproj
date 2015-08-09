@@ -13,6 +13,7 @@
 		E14DCD771B775AE2000760DC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E14DCD761B775AE2000760DC /* Images.xcassets */; };
 		E14DCD7A1B775AE2000760DC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E14DCD781B775AE2000760DC /* LaunchScreen.xib */; };
 		E14DCD861B775AE2000760DC /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14DCD851B775AE2000760DC /* TicTacToeTests.swift */; };
+		E1A9A3E31B77704200537310 /* TicTacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A9A3E21B77704200537310 /* TicTacView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		E14DCD7F1B775AE2000760DC /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E14DCD841B775AE2000760DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E14DCD851B775AE2000760DC /* TicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeTests.swift; sourceTree = "<group>"; };
+		E1A9A3E21B77704200537310 /* TicTacView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicTacView.swift; path = ../TicTacView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		E14DCD6C1B775AE2000760DC /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				E1A9A3E21B77704200537310 /* TicTacView.swift */,
 				E14DCD6F1B775AE2000760DC /* AppDelegate.swift */,
 				E14DCD711B775AE2000760DC /* ViewController.swift */,
 				E14DCD731B775AE2000760DC /* Main.storyboard */,
@@ -212,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A9A3E31B77704200537310 /* TicTacView.swift in Sources */,
 				E14DCD721B775AE2000760DC /* ViewController.swift in Sources */,
 				E14DCD701B775AE2000760DC /* AppDelegate.swift in Sources */,
 			);
@@ -411,6 +415,7 @@
 				E14DCD8B1B775AE2000760DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E14DCD8C1B775AE2000760DC /* Build configuration list for PBXNativeTarget "TicTacToeTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				E14DCD8E1B775AE2000760DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
