@@ -27,8 +27,28 @@ enum TickTackType: Int {
         }
     }
     
+    @IBInspectable var isHighlighted : Bool = false {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+    
+    func reset()
+    {
+        self.type = .Empty
+        self.isHighlighted = false
+    }
+    
+    @IBInspectable var boardPosition : Int = 0
+    
     override func drawRect(rect: CGRect) {
         let ctx = UIGraphicsGetCurrentContext()
+        
+        if(self.isHighlighted)
+        {
+            CGContextSetStrokeColorWithColor(ctx, UIColor(red: 0.0, green: 0.6, blue: 0.0, alpha: 1.0).CGColor)
+            CGContextStrokeRectWithWidth(ctx, CGRectInset(rect, 4.0, 4.0), 3.0 )
+        }
         
         switch self.type
         {
