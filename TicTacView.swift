@@ -21,7 +21,11 @@ enum TickTackType: Int {
         }
     }
     
-    var type : TickTackType = .Cross
+    var type : TickTackType = .Cross {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     override func drawRect(rect: CGRect) {
         let ctx = UIGraphicsGetCurrentContext()

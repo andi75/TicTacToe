@@ -30,6 +30,13 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func clearPressed() {
+        for ttv in ticTacViewCollection
+        {
+            ttv.type = TickTackType.Empty
+        }
+    }
+    
     func tickTackViewTapped(sender: UITapGestureRecognizer)
     {
         if(sender.state != .Ended)
