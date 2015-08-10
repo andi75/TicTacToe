@@ -14,10 +14,14 @@ class ViewController: UIViewController {
     @IBInspectable var crossColor = UIColor.blueColor()
     
     var isCircleTurn = true
+    var canMove = true
+    var moveCount = 0
     
     var board : [TickTackView?] = [TickTackView?](count: 10, repeatedValue: nil)
     
     @IBOutlet var ticTacViewCollection: [TickTackView]!
+    
+    @IBOutlet weak var resultLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +38,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func checkForWin() -> TickTackType?
+    func checkForWin() -> TickTackType
     {
         let winrows = [
             [ 1, 2, 3], [4, 5, 6], [7, 8, 9],
@@ -42,7 +46,7 @@ class ViewController: UIViewController {
             [ 1, 5, 9], [3, 5, 7]
         ]
         
-        var winner : TickTackType? = nil
+        var winner = TickTackType.Empty
         
         for row in winrows
         {
@@ -56,7 +60,7 @@ class ViewController: UIViewController {
                 board[ row[1] ]?.isHighlighted = true
                 board[ row[2] ]?.isHighlighted = true
                 
-                winner = board[ row[0] ]?.type
+                winner = board[ row[0] ]!.type
             }
         }
         return winner
@@ -68,6 +72,9 @@ class ViewController: UIViewController {
         {
             ttv.reset()
         }
+        resultLabel.hidden = true
+        canMove = true
+        moveCount = 0
     }
 
     @IBAction func clearPressed() {
@@ -76,7 +83,7 @@ class ViewController: UIViewController {
     
     func tickTackViewTapped(sender: UITapGestureRecognizer)
     {
-        if(sender.state != .Ended)
+        if(sender.state != .Ended || !canMove)
         {
             return
         }
@@ -97,7 +104,27 @@ class ViewController: UIViewController {
             isCircleTurn = !isCircleTurn
         }
         
-        checkForWin()
+        let result = checkForWin()
+        switch result
+        {
+        case TickTackType.Circle:
+            resultLabel.text = "Circle Wins!"
+            resultLabel.hidden = false
+            canMove = false
+        case TickTackType.Cross:
+            resultLabel.text = "Cross Wins!"
+            resultLabel.hidden = false
+            canMove = false
+        default:
+            break
+        }
+        moveCount++
+        if(moveCount == 9)
+        {
+            resultLabel.text = "It's a Draw!"
+            resultLabel.hidden = false
+            canMove = false
+        }
     }
 }
 
