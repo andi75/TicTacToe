@@ -103,7 +103,8 @@ class ViewController: UIViewController {
             }
             isCircleTurn = !isCircleTurn
         }
-        
+        moveCount++
+
         let result = checkForWin()
         switch result
         {
@@ -116,14 +117,12 @@ class ViewController: UIViewController {
             resultLabel.hidden = false
             canMove = false
         default:
-            break
-        }
-        moveCount++
-        if(moveCount == 9)
-        {
-            resultLabel.text = "It's a Draw!"
-            resultLabel.hidden = false
-            canMove = false
+            if(moveCount == 9)
+            {
+                resultLabel.text = "It's a Draw!"
+                resultLabel.hidden = false
+                canMove = false
+            }
         }
     }
 }
