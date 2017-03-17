@@ -103,7 +103,8 @@ class ViewController: UIViewController {
             }
             isCircleTurn = !isCircleTurn
         }
-        
+        moveCount++
+
         let result = checkForWin()
         switch result
         {
