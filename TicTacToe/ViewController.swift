@@ -10,14 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBInspectable var circleColor = UIColor.redColor()
-    @IBInspectable var crossColor = UIColor.blueColor()
+    @IBInspectable var circleColor = UIColor.red
+    @IBInspectable var crossColor = UIColor.blue
     
     var isCircleTurn = true
     var canMove = true
     var moveCount = 0
     
-    var board : [TickTackView?] = [TickTackView?](count: 10, repeatedValue: nil)
+    var board : [TickTackView?] = [TickTackView?](repeating: nil, count: 10)
     
     @IBOutlet var ticTacViewCollection: [TickTackView]!
     
@@ -32,8 +32,8 @@ class ViewController: UIViewController {
         for ttv in ticTacViewCollection
         {
             board[ ttv.boardPosition ] = ttv as TickTackView?
-            println("\(ttv.boardPosition) => \(ttv)")
-            let tapReg = UITapGestureRecognizer(target: self, action: Selector("tickTackViewTapped:"))
+            print("\(ttv.boardPosition) => \(ttv)")
+            let tapReg = UITapGestureRecognizer(target: self, action: #selector(ViewController.tickTackViewTapped(_:)))
             ttv.addGestureRecognizer(tapReg)
         }
     }
@@ -46,12 +46,12 @@ class ViewController: UIViewController {
             [ 1, 5, 9], [3, 5, 7]
         ]
         
-        var winner = TickTackType.Empty
+        var winner = TickTackType.empty
         
         for row in winrows
         {
             if(
-                board[ row[0] ]?.type != TickTackType.Empty &&
+                board[ row[0] ]?.type != TickTackType.empty &&
                 board[ row[0] ]?.type == board[ row[1] ]?.type &&
                 board[ row[0] ]?.type == board[ row[2] ]?.type
             )
@@ -72,7 +72,7 @@ class ViewController: UIViewController {
         {
             ttv.reset()
         }
-        resultLabel.hidden = true
+        resultLabel.isHidden = true
         canMove = true
         moveCount = 0
     }
@@ -81,24 +81,24 @@ class ViewController: UIViewController {
         reset()
     }
     
-    func tickTackViewTapped(sender: UITapGestureRecognizer)
+    func tickTackViewTapped(_ sender: UITapGestureRecognizer)
     {
-        if(sender.state != .Ended || !canMove)
+        if(sender.state != .ended || !canMove)
         {
             return
         }
         
         let ttV = sender.view as? TickTackView
-        if(ttV != nil && ttV!.type == TickTackType.Empty)
+        if(ttV != nil && ttV!.type == TickTackType.empty)
         {
             if(self.isCircleTurn)
             {
-                ttV!.type = TickTackType.Circle
+                ttV!.type = TickTackType.circle
                 ttV!.elementColor = circleColor
             }
             else
             {
-                ttV!.type = TickTackType.Cross
+                ttV!.type = TickTackType.cross
                 ttV!.elementColor = crossColor
             }
             isCircleTurn = !isCircleTurn
@@ -107,22 +107,22 @@ class ViewController: UIViewController {
         let result = checkForWin()
         switch result
         {
-        case TickTackType.Circle:
+        case TickTackType.circle:
             resultLabel.text = "Circle Wins!"
-            resultLabel.hidden = false
+            resultLabel.isHidden = false
             canMove = false
-        case TickTackType.Cross:
+        case TickTackType.cross:
             resultLabel.text = "Cross Wins!"
-            resultLabel.hidden = false
+            resultLabel.isHidden = false
             canMove = false
         default:
             break
         }
-        moveCount++
+        moveCount += 1
         if(moveCount == 9)
         {
             resultLabel.text = "It's a Draw!"
-            resultLabel.hidden = false
+            resultLabel.isHidden = false
             canMove = false
         }
     }
